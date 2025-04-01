@@ -18,12 +18,12 @@
 # include <unistd.h>
 # include "ft_printf/ft_printf.h"
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 10024
 # define TIMEOUT 10000
 
 void	handle_signal(int sig);
-void	send_char(pid_t server_pid, unsigned char c);
-char	*ft_itoa(pid_t num);
+void	send_char(int server_pid, unsigned char c);
+char	*ft_itoa(int num);
 int		ft_atoi(const char *str);
 char	*ft_strcpy(char *dest, char *src);
 void	ft_add_char(char *str);
@@ -32,4 +32,3 @@ void	*ft_memcpy(char *dest, char *src, size_t n);
 void	*ft_realloc(char *ptr, size_t old_size, size_t new_size);
 
 #endif
-
