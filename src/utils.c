@@ -12,50 +12,6 @@
 
 #include "../includes/minitalk.h"
 
-static int	count_size(int n)
-{
-	int i;
-
-	i = 0;
-	if (n < 0)
-		n *= -1;
-	while (n != 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(pid_t num)
-{
-	char		*dst;
-	long		count;
-	long		i;
-	long int	n;
-
-	n = num;
-	count = count_size(n);
-	i = 0;
-	if (n < 0 || count == 0)
-		count++;
-	if (!(dst = malloc(sizeof(char) * (count + 1))))
-		return (NULL);
-	if (n < 0)
-	{
-		n *= -1;
-		dst[0] = '-';
-		i++;
-	}
-	while (count > i)
-	{
-		count--;
-		dst[count] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (dst);
-}
-
 int	ft_atoi(const char *str)
 {
 	int neg;
@@ -81,16 +37,53 @@ int	ft_atoi(const char *str)
 	}
 	return (num * neg);
 }
-char	*ft_strcpy(char *dest, char *src)
+
+char	*calloc_char(int size)
 {
-	int	i;
+	char *tab;
+	int i;
 
 	i = 0;
-	while (src[i] != '\0')
+	tab = (char *)malloc(size * sizeof(char));
+	if (!tab)
+		return (0);
+	while (i < size)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
+}
+
+void	*ft_realloc(char *ptr, size_t old_size, size_t new_size)
+{
+	char	*new_ptr;
+
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+		new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (ptr)
+	{
+		ft_memcpy(new_ptr, ptr, old_size);
+		free(ptr);
+	}
+	return (new_ptr);
+}
+
+void	*ft_memcpy(char *dest, char *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
 	return (dest);
 }

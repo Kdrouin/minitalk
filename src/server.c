@@ -11,6 +11,27 @@
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
+static void	ft_printnf(char *str)
+{
+	ft_printf("%s\n", str);
+	free(str);
+	str = NULL;
+}
+
+static void handle_char(char *str, int str_len, unsigned char current_char)
+{
+	str = ft_realloc(str, str_len, str_len + 1);
+	if (!str)
+	{
+		ft_printf("Memory allocation failed\n");
+		exit(1);
+	}
+	str[str_len - 1] = current_char;
+	str_len++;
+	if (current_char == '\0')
+		ft_printnf(str);
+	current_char = 0;
+}
 
 void	handle_signal(int sig)
 {
@@ -28,22 +49,7 @@ void	handle_signal(int sig)
 	bit_index++;
 	if (bit_index == 8)
 	{
-		str = ft_realloc(str, str_len, str_len + 1);
-		if (!str)
-		{
-			ft_printf("Memory allocation failed\n");
-			exit(1);
-		}
-		str[str_len - 1] = current_char;
-		str[str_len] = '\0';
-		str_len++;
-		if (current_char == '\0')
-		{
-			ft_printf("Received message: %s\n", str);
-			free(str);
-			str = NULL;
-		}
-		current_char = 0;
+		handle_char(str, str_len, current_char);
 		bit_index = 0;
 	}
 	else
