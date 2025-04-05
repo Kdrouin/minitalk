@@ -1,0 +1,4 @@
+#
+.vscode/
+*.code-workspace
+ Ignore Visual Studio Code specific files
