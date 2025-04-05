@@ -12,10 +12,10 @@
 
 #include "../includes/minitalk.h"
 
-void	send_char(pid_t server_pid, unsigned char c)
+void	send_char(int server_pid, unsigned char c)
 {
-	int i;
-	unsigned char t_char;
+	int				i;
+	unsigned char	t_char;
 
 	i = 8;
 	t_char = c;
@@ -27,13 +27,13 @@ void	send_char(pid_t server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		usleep(100);
+		usleep(300);
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	pid_t	server_pid;
+	int		server_pid;
 	char	*message;
 	int		i;
 
@@ -49,7 +49,6 @@ int	main(int argc, char *argv[])
 	while (message[i])
 	{
 		send_char(server_pid, message[i]);
-		ft_printf("Sent : %c\n", message[i]);
 		i++;
 	}
 	send_char(server_pid, '\0');

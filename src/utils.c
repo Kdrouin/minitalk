@@ -14,15 +14,15 @@
 
 int	ft_atoi(const char *str)
 {
-	int neg;
-	int i;
-	int num;
+	int	neg;
+	int	i;
+	int	num;
 
 	i = 0;
 	neg = 1;
 	num = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r')
+		|| str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -40,8 +40,8 @@ int	ft_atoi(const char *str)
 
 char	*calloc_char(int size)
 {
-	char *tab;
-	int i;
+	char	*tab;
+	int		i;
 
 	i = 0;
 	tab = (char *)malloc(size * sizeof(char));
@@ -64,7 +64,7 @@ void	*ft_realloc(char *ptr, size_t old_size, size_t new_size)
 		free(ptr);
 		return (NULL);
 	}
-		new_ptr = malloc(new_size);
+	new_ptr = malloc(new_size);
 	if (!new_ptr)
 		return (NULL);
 	if (ptr)
