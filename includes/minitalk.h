@@ -20,8 +20,9 @@
 
 void	send_char(int server_pid, unsigned char c);
 void	handle_signal(int sig);
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 char	*calloc_char(int size);
 void	*ft_realloc(char *ptr, size_t old_size, size_t new_size);
 void	*ft_memcpy(char *dest, char *src, size_t n);
+
 #endif
