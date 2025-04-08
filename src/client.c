@@ -12,6 +12,21 @@
 
 #include "../includes/minitalk.h"
 
+volatile sig_atomic_t g_ready = 0; 
+
+static void handle_server_ack(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		g_ready = 1;
+	}
+	else if (sig == SIGUSR2)
+	{
+		ft_printf("\n✅ Message sent successfully\n");
+		exit(0);
+	}
+}
+
 void	send_char(int server_pid, unsigned char c)
 {
 	int				i;
@@ -27,7 +42,9 @@ void	send_char(int server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		usleep(300);
+		g_ready = 0;
+		while (!g_ready)
+			pause();
 	}
 }
 
@@ -44,13 +61,17 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	server_pid = ft_atoi(argv[1]);
-	ft_printf("Server PID : %d\n", server_pid);
-	ft_printf("Message : %s\n", message = argv[2]);
-	while (message[i])
+	if (server_pid <= 0)
 	{
-		send_char(server_pid, message[i]);
-		i++;
+		write(2, "Invalid PID\n", 12);
+		return (1);
 	}
+	ft_printf("Server PID : %d\n", server_pid);
+	signal(SIGUSR1, handle_server_ack);
+	signal(SIGUSR2, handle_server_ack);
+	while (argv[2][i])
+		send_char(server_pid, argv[2][i++]);
 	send_char(server_pid, '\0');
+	ft_printf("Message : %s\n", message = argv[2]);
 	return (0);
 }

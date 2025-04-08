@@ -6,7 +6,7 @@
 #    By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/26 01:08:42 by brdani            #+#    #+#              #
-#    Updated: 2024/12/07 11:51:00 by kadrouin         ###   ########.fr        #
+#    Updated: 2025/04/07 18:44:48 by kadrouin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ft_printf.c \
 		ft_print_format_char.c \
 
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = "-Wall -Wextra -Werror -fPIC"
 CC = cc
 HEADER = ft_printf.h
 
