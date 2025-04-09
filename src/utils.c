@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 20:14:43 by kadrouin          #+#    #+#             */
-/*   Updated: 2025/03/10 20:14:43 by kadrouin         ###   ########.fr       */
+/*   Created: 2025/04/09 14:39:32 by kadrouin          #+#    #+#             */
+/*   Updated: 2025/04/09 14:39:32 by kadrouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,13 @@ void	*ft_memcpy(char *dest, char *src, size_t n)
 		i++;
 	}
 	return (dest);
+}
+
+void	init_server_vars(char **str, int *str_len, unsigned char *current_char, int *bit_index)
+{
+	*str = calloc_char(1);
+	*str_len = 1;
+	*current_char = 0;
+	*bit_index = 0;
+	ft_printf("Init server var%d\n");
 }

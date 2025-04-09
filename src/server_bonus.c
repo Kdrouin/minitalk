@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 20:02:31 by kadrouin          #+#    #+#             */
-/*   Updated: 2025/03/10 20:02:31 by kadrouin         ###   ########.fr       */
+/*   Created: 2025/04/09 14:37:05 by kadrouin          #+#    #+#             */
+/*   Updated: 2025/04/09 14:37:05 by kadrouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 		current_char <<= 1;
 	
 	kill(pid, SIGUSR1);
+
 }
 
 int	main(void)

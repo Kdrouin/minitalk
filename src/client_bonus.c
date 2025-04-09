@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 20:58:02 by kadrouin          #+#    #+#             */
-/*   Updated: 2025/03/10 20:58:02 by kadrouin         ###   ########.fr       */
+/*   Created: 2025/04/09 14:37:17 by kadrouin          #+#    #+#             */
+/*   Updated: 2025/04/09 14:37:17 by kadrouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 volatile sig_atomic_t g_ready = 0; 
 
-static void	handle_server_ack(int sig)
+static void handle_server_ack(int sig)
 {
 	if (sig == SIGUSR1)
 		g_ready = 1;
+	else if (sig == SIGUSR2)
+	{
+		ft_printf("\n✅ Message sent successfully\n");
+		exit(0);
+	}
 }
 
 void	send_char(int server_pid, unsigned char c)
