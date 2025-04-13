@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
+#include <stdio.h>
 
 volatile sig_atomic_t g_ready = 0; 
 
 static void handle_server_ack(int sig)
 {
 	if (sig == SIGUSR1)
-		g_ready = 1;
+			g_ready = 1;
 	else if (sig == SIGUSR2)
 	{
 		ft_printf("\n✅ Message sent successfully\n");
@@ -49,7 +50,6 @@ void	send_char(int server_pid, unsigned char c)
 int	main(int argc, char *argv[])
 {
 	int		server_pid;
-	char	*message;
 	int		i;
 
 	i = 0;

@@ -69,11 +69,10 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 	{
 		handle_char(&str, &str_len, &current_char, pid);
 		bit_index = 0;
-		kill(pid, SIGUSR1);
 	}
 	else
 		current_char <<= 1;
-	
+	usleep(100);
 	kill(pid, SIGUSR1);
 
 }

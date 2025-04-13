@@ -41,10 +41,12 @@ $(NAME_SERVER): $(OBJ_SERVER) $(OBJ_UTILS)
 
 clean:
 	rm -f $(OBJ_CLIENT) $(OBJ_SERVER) $(OBJ_UTILS)
+	rm -f $(OBJ_BONUS_CLIENT) $(OBJ_BONUS_SERVER)
 
 fclean: clean
 	make -C $(PRINTF) fclean
 	rm -f $(NAME_CLIENT) $(NAME_SERVER)
+	rm -f $(NAME_CLIENT)_bonus $(NAME_SERVER)_bonus
 
 re: fclean all
 

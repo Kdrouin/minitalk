@@ -44,7 +44,6 @@ void	send_char(int server_pid, unsigned char c)
 int	main(int argc, char *argv[])
 {
 	int		server_pid;
-	char	*message;
 	int		i;
 
 	i = 0;

@@ -19,7 +19,7 @@ static void	ft_printnf(char *str)
 	str = NULL;
 }
 
-static void	handle_char(char **str, int *str_len, unsigned char *current_char, int pid)
+static void	handle_char(char **str, int *str_len, unsigned char *current_char)
 {
 	*str = ft_realloc(*str, *str_len, *str_len + 1);
 	if (!*str)
@@ -32,8 +32,6 @@ static void	handle_char(char **str, int *str_len, unsigned char *current_char, i
 	if (*current_char == '\0')
 	{
 		ft_printnf(*str);
-		if (kill(pid, SIGUSR2) == -1)
-			ft_printf("Error sending signal to client");
 		*str = NULL;
 		*str_len = 0;
 	}
@@ -67,13 +65,13 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 	bit_index++;
 	if (bit_index == 8)
 	{
-		handle_char(&str, &str_len, &current_char, pid);
+		handle_char(&str, &str_len, &current_char);
 		bit_index = 0;
 		kill(pid, SIGUSR1);
 	}
 	else
 		current_char <<= 1;
-	
+	usleep(100);
 	kill(pid, SIGUSR1);
 }
 
