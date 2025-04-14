@@ -19,7 +19,8 @@ static void	ft_printnf(char *str)
 	str = NULL;
 }
 
-static void	handle_char(char **str, int *str_len, unsigned char *current_char, int pid)
+static void	handle_char(char **str, int *str_len,
+				unsigned char *current_char, int pid)
 {
 	*str = ft_realloc(*str, *str_len, *str_len + 1);
 	if (!*str)
@@ -48,7 +49,6 @@ static void	handle_sigint(char *str)
 	exit(0);
 }
 
-
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static unsigned char	current_char;
@@ -74,12 +74,11 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 		current_char <<= 1;
 	usleep(100);
 	kill(pid, SIGUSR1);
-
 }
 
 int	main(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	ft_printf("Server Started \nPID : %d\n", getpid());
 	sa.sa_sigaction = handle_signal;

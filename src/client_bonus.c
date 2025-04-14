@@ -13,12 +13,12 @@
 #include "../includes/minitalk.h"
 #include <stdio.h>
 
-volatile sig_atomic_t g_ready = 0; 
+volatile sig_atomic_t	g_ready = 0;
 
-static void handle_server_ack(int sig)
+static void	handle_server_ack(int sig)
 {
 	if (sig == SIGUSR1)
-			g_ready = 1;
+		g_ready = 1;
 	else if (sig == SIGUSR2)
 	{
 		ft_printf("\n✅ Message sent successfully\n");
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (argc != 3)
 	{
-		write(2, "Usage : ./client <PID du serveur> <Message>\n", 45);
+		write(2, "Usage : ./client <Server's PID <Message>\n", 45);
 		return (1);
 	}
 	server_pid = ft_atoi(argv[1]);

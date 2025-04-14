@@ -24,6 +24,7 @@ int		ft_atoi(const char *str);
 char	*calloc_char(int size);
 void	*ft_realloc(char *ptr, size_t old_size, size_t new_size);
 void	*ft_memcpy(char *dest, char *src, size_t n);
-void	init_server_vars(char **str, int *str_len, unsigned char *current_char, int *bit_index);
+void	init_server_vars(char **str, int *str_len,
+			unsigned char *current_char, int *bit_index);
 
 #endif

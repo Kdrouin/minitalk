@@ -88,7 +88,8 @@ void	*ft_memcpy(char *dest, char *src, size_t n)
 	return (dest);
 }
 
-void	init_server_vars(char **str, int *str_len, unsigned char *current_char, int *bit_index)
+void	init_server_vars(char **str, int *str_len,
+			unsigned char *current_char, int *bit_index)
 {
 	*str = calloc_char(1);
 	*str_len = 1;

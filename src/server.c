@@ -46,7 +46,6 @@ static void	handle_sigint(char *str)
 	exit(0);
 }
 
-
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static unsigned char	current_char;
@@ -67,7 +66,6 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 	{
 		handle_char(&str, &str_len, &current_char);
 		bit_index = 0;
-		kill(pid, SIGUSR1);
 	}
 	else
 		current_char <<= 1;
@@ -77,7 +75,7 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	ft_printf("Server Started \nPID : %d\n", getpid());
 	sa.sa_sigaction = handle_signal;
